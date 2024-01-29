@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import StateData from './UserState.json';
 import './UserInfo.css';
+import { Link } from "react-router-dom";
 
 function UserDetails() {
     const [selectedState, setSelectedState] = useState('');
@@ -15,12 +16,20 @@ function UserDetails() {
         const StateSelected = StateData.States.find((state) => state.name === StateName);
         console.log(StateSelected);
         setSelectedState(StateName);
+        setUserData(prevData => ({ ...prevData, state: StateName}))
 
         const showCity = StateSelected.city;
         //console.log(showCity);
         setStateCities(showCity);
         console.log(stateCities);
+        //setUserData(prevData => ({ ...prevData, city: }))
     }
+
+    const SelectCity = (event) => {
+        const cityName = event.target.value;
+        console.log(cityName);
+        setUserData(prevData => ({ ...prevData, city: cityName}))
+            }
     /*
         const checkData = (event) => {
             const userInfo = event.target.value;
@@ -38,6 +47,7 @@ function UserDetails() {
         if (userCode.length !== 6) {
             setCodeError((current) => !current);
         }
+        setUserData(prevData => ({ ...prevData, zipcode: userCode}))
         // if (userCode.length > 5 || userCode.length < 5) {
         //     setCodeError((current) => !current);
 
@@ -49,55 +59,70 @@ function UserDetails() {
     const submitData = (event) => {
         event.preventDefault();
         console.log(userData);
-        localStorage.setItem("formData", JSON.stringify(userData));
+        localStorage.setItem("UserInfo", JSON.stringify(userData));
     }
 
     return (
         <>
             <form>
                 <label> First Name </label>
-                <input type="text" name="First-name" placeholder="First Name" onBlur={(event) => {
-                    if (!event.target.value) { setPageError(prevError => ({ ...prevError, firstname: 'This feild is required' })); }
-                    else { setPageError({})
-                    setUserData(prevData => ({...prevData, firstname: event.target.value})) };
-                }} />
+                <input type="text" name="First-name" placeholder="First Name"
+                    onBlur={(event) => {
+                        if (!event.target.value) { setPageError(prevError => ({ ...prevError, firstname: 'This feild is required' })); }
+                        else {
+                            setPageError({})
+                            setUserData(prevData => ({ ...prevData, firstname: event.target.value }))
+                        };
+                    }} />
                 <p>{pageError.firstname}</p>
                 <label> Last Name </label>
-                <input type="text" name="Last-name" placeholder="Last Name" onBlur={(event) => {
-                    if (!event.target.value) { setPageError(prevError => ({ ...prevError, lastname: 'This feild is required' })); }
-                    else { setPageError({})
-                     setUserData(prevData => ({...prevData, lastname: event.target.value}))};
-                }} />
+                <input type="text" name="Last-name" placeholder="Last Name"
+                    onBlur={(event) => {
+                        if (!event.target.value) { setPageError(prevError => ({ ...prevError, lastname: 'This feild is required' })); }
+                        else {
+                            setPageError({})
+                            setUserData(prevData => ({ ...prevData, lastname: event.target.value }))
+                        };
+                    }} />
                 <p>{pageError.lastname}</p>
                 <label> Email </label>
-                <input type="email" name="email" placeholder="E-Mail" onBlur={(event) => {
-                    if (!event.target.value) { setPageError(prevError => ({ ...prevError, email: 'This feild is required' })); }
-                    else { setPageError({}) 
-                    setUserData(prevData => ({...prevData, email: event.target.value}))};
-                }} />
+                <input type="email" name="email" placeholder="E-Mail"
+                    onBlur={(event) => {
+                        if (!event.target.value) { setPageError(prevError => ({ ...prevError, email: 'This feild is required' })); }
+                        else {
+                            setPageError({})
+                            setUserData(prevData => ({ ...prevData, email: event.target.value }))
+                        };
+                    }} />
                 <p>{pageError.email}</p>
                 <label> Number </label>
-                <input type="tel" name="number" placeholder="Phone Number" onBlur={(event) => {
-                    if (!event.target.value) { setPageError(prevError => ({ ...prevError, number: 'This feild is required' })); }
-                    else { setPageError({})
-                    setUserData(prevData => ({...prevData, number: event.target.value})) };
-                }} />
+                <input type="tel" name="number" placeholder="Phone Number"
+                    onBlur={(event) => {
+                        if (!event.target.value) { setPageError(prevError => ({ ...prevError, number: 'This feild is required' })); }
+                        else {
+                            setPageError({})
+                            setUserData(prevData => ({ ...prevData, number: event.target.value }))
+                        };
+                    }} />
                 <p>{pageError.number}</p>
                 <label> Address </label>
-                <input type="text" name="address" placeholder="Address" onBlur={(event) => {
-                    if (!event.target.value) { setPageError(prevError => ({ ...prevError, address: 'This feild is required' })); }
-                    else { setPageError({}) 
-                    setUserData(prevData => ({...prevData, address: event.target.value}))};
-                }} />
+                <input type="text" name="address" placeholder="Address"
+                    onBlur={(event) => {
+                        if (!event.target.value) { setPageError(prevError => ({ ...prevError, address: 'This feild is required' })); }
+                        else {
+                            setPageError({})
+                            setUserData(prevData => ({ ...prevData, address: event.target.value }))
+                        };
+                    }} />
                 <p>{pageError.address}</p>
                 <label> State </label>
-                <select onChange={SelectState} value={selectedState}> Select State
+                <select onChange={SelectState} value={selectedState}>
                     {StateData.States.map((states) => {
                         return <option value={states.name}> {states.name} </option>
                     })}
                 </select>
                 <label> City </label>
-                <select> Select City
+                <select onChange={SelectCity}>
                     {stateCities.map((city, index) => (
                         <option key={index} value={city}> {city}</option>
                     ))}
