@@ -1,18 +1,26 @@
 import React from "react";
 import { useState } from "react";
 import '../CSS Sheet/main.css';
+import ScreenLoading from "../Loading/loadingscreen";
 
 function EducationInfo() {
     const [eduData, setEduData] = useState({});
     const [error, setError] = useState({});
+    const [loading, setLoading] = useState(false);
+
+    setTimeout(() => {
+        setLoading(false);
+    }, 2000);
 
     const addData = (event) => {
         event.preventDefault();
         console.log(eduData);
         localStorage.setItem("EduInfo", JSON.stringify(eduData));
         setTimeout(() => {
+            setLoading(true);
+            <ScreenLoading/>
             window.location.replace('./JobInfo');
-        }, 5000);
+        }, 2000);
     }
 
     return (
@@ -21,6 +29,7 @@ function EducationInfo() {
                 <h1> Registration Form </h1>
                 <h3>Education Details </h3>
             </div>
+            {loading ? <ScreenLoading/> : 
             <div className="main-form">
                 <form onSubmit={addData} autoComplete="off" className="user-form">
                     <label>School/University</label>
@@ -80,6 +89,7 @@ function EducationInfo() {
                     <button type="submit" className="form-btn">Submit</button>
                 </form>
             </div>
+}
         </>
     )
 }

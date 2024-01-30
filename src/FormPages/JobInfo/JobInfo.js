@@ -12,7 +12,7 @@ function JobInfo() {
         localStorage.setItem("JobInfo", JSON.stringify(jobData));
         setTimeout(() => {
             window.location.replace('./lastpage');
-        }, 5000);
+        }, 2000);
     }
 
     return (
