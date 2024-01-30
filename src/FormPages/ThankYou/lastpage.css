@@ -1,0 +1,53 @@
+.main-box {
+    border: 1px solid black;
+    border-radius: 10px;
+    text-align: center;
+    font-size: x-large;
+    margin: 10px 10px;
+    animation: slideFromTop 1s ease-in-out;
+}
+
+.semi-box {
+    border: 1px solid black;
+    border-radius: 10px;
+    text-align: center;
+    font-size: x-large;
+    margin: 10px 10px;
+    padding: 10px 10px;
+    animation: slideFromBottom 1s ease-in-out;
+}
+
+.main-btn {
+    border: 1px solid transparent;
+    border-radius: 10px;
+    background-color: #3d85c6;
+    color: white;
+    font-size: large;
+    padding: 5px 5px;
+}
+
+.main-btn:hover {
+    background-color: white;
+    color: #3d85c6;
+    border: 1px solid #3d85c6;
+    font-size: large;
+}
+
+@keyframes slideFromTop {
+    0% {
+        transform: translateY(-100%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideFromBottom{
+    0%{
+        transform: translateY(100%);
+    }
+    100%{
+        transform: translateY(0);
+    }
+}

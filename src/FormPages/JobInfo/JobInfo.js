@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import './JobInfo.css';
+import '../CSS Sheet/main.css';
 
 function JobInfo() {
     const [jobData, setJobData] = useState({});
@@ -10,11 +10,19 @@ function JobInfo() {
         event.preventDefault();
         console.log(jobData);
         localStorage.setItem("JobInfo", JSON.stringify(jobData));
+        setTimeout(() => {
+            window.location.replace('./lastpage');
+        }, 5000);
     }
 
     return (
         <>
-            <form onSubmit={addData}>
+        <div className="fade-in-text">
+                <h1> Registration Form </h1>
+                <h3>Job Details </h3>
+            </div>
+            <div className="main-form">
+            <form onSubmit={addData} autoComplete="off" className="user-form">
                 <label>Job Title</label>
                 <input type="text" id="job" name="job-title"
                     onBlur={(event) => {
@@ -24,7 +32,7 @@ function JobInfo() {
                             setJobData(prevData => ({ ...prevData, jobtitle: event.target.value }))
                         };
                     }} />
-                <p>{error.job}</p>
+                <p className = "form-error">{error.job}</p>
 
                 <label>Company Name</label>
                 <input type="text" id="company" name="company-name"
@@ -35,7 +43,7 @@ function JobInfo() {
                             setJobData(prevData => ({ ...prevData, companyname: event.target.value }))
                         };
                     }} />
-                <p>{error.company}</p>
+                <p className = "form-error">{error.company}</p>
 
                 <label>Experiance ( In Years)</label>
                 <input type="text" id="exp" name="exp"
@@ -46,7 +54,7 @@ function JobInfo() {
                             setJobData(prevData => ({ ...prevData, experiance: event.target.value }))
                         };
                     }} />
-                <p>{error.exp}</p>
+                <p className = "form-error">{error.exp}</p>
 
                 <label>Joining Date</label>
                 <input type="date" id="joindate" name="joindate"
@@ -57,10 +65,11 @@ function JobInfo() {
                             setJobData(prevData => ({ ...prevData, joindate: event.target.value }))
                         };
                     }} />
-                <p>{error.date}</p>
+                <p className = "form-error">{error.date}</p>
 
-                <button type="submit">Submit</button>
+                <button type="submit" className="form-btn">Submit</button>
             </form>
+            </div>
         </>
     )
 }

@@ -1,25 +1,23 @@
-body {
-    font-family: 'Times New Roman', Times, serif;
-}
-
-/*
 .user-form{
     max-width: 400px;
-    padding-top: 25px;
-    border: 1px solid #ccc;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 1px solid transparent;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-right: 55%;
-    background-color: rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-left: 8%;
+    background-color: rgba(0, 0, 0, 0.3);
     overflow: hidden;
 }
 
 .main-form{
-    border: 1px solid black;
+    border: none;
     border-radius: 10px;
     max-height: max-content;
     margin: 5px 5px 5px 5px;
+    padding: 10px 10px 10px 10px;
     background-image: url("../Image/Cover.jpg");
+    border-image: fill 0 linear-gradient(rgba(117, 117, 117, 0.2), #4d4c4c);
     background-position: center;
     overflow: hidden;
     background-size: cover;
@@ -67,32 +65,40 @@ body {
 
 label {
     display: block;
-    margin-bottom: 8px;
+    padding: 8px;
+    margin-bottom: 5px;
     font-weight: bold;
     font-size: large;
+    margin-left: 10px;
 }
 
 input,
 select {
-    width: 100%;
+    width: 80%;
     padding: 8px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+    margin-left: 10px;
     box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid transparent;
 }
 
 select {
     cursor: pointer;
 }
 
-.second-btn {
+.form-btn {
     background-color: white;
     border-radius: 10px;
+    border: none;
     color: #0056b3;
     padding: 10px 15px;
+    margin: 5px 10px 2px 2px;
     cursor: pointer;
     font-family: 'Times New Roman', Times, serif;
     font-size: larger;
     font-weight: bold;
+    float: right;
 }
 
 button:hover {
@@ -108,5 +114,7 @@ button:hover {
     font-size: medium;
     font-family: 'Times New Roman', Times, serif;
     margin-top: 5px;
+    margin-left: 10px;
 }
-*/
+
+
